@@ -8,12 +8,12 @@ Overview
 
 Libraries
 ------------------------
-<LCD5110_Graph.h> //5110 Nokia
-<Keypad.h> //keypad
-<SFE_BMP180.h> //pressure sensor
-<dht.h> //DHT11 humidity sensor
-<DS1307RTC.h> //Real time clock
-<Sleep_n0m1.h> //sleep function https://github.com/n0m1/Sleep_n0m1
+* <LCD5110_Graph.h> //5110 Nokia
+* <Keypad.h> //keypad
+* <SFE_BMP180.h> //pressure sensor
+* <dht.h> //DHT11 humidity sensor
+* <DS1307RTC.h> //Real time clock
+* <Sleep_n0m1.h> //sleep function https://github.com/n0m1/Sleep_n0m1
 
 All can be found on Arduino website site except "sleep_n0m1"
 
