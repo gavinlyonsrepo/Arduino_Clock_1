@@ -8,6 +8,10 @@ Overview
 
 Libraries
 ------------------------
+
+In src folder you will find the ino file which contains the source code 
+It calls from a number of libraries.
+
 * <LCD5110_Graph.h> //5110 Nokia
 * <Keypad.h> //keypad
 * <SFE_BMP180.h> //pressure sensor
@@ -15,11 +19,12 @@ Libraries
 * <DS1307RTC.h> //Real time clock
 * <Sleep_n0m1.h> //sleep function https://github.com/n0m1/Sleep_n0m1
 
-All can be found on Arduino website site except "sleep_n0m1"
+All are standard libraries which can be found on Arduino website site except "sleep_n0m1" see link.
 
 Parts List
 ------------------------------
-See fritzing diagram in "doc" for assembly instruction.
+See fritzing diagram in "doc" for assembly instruction and schematic. 
+You will need [fritzing](https://en.wikipedia.org/wiki/Fritzing) software to open this.
 
 You will need following parts
 
