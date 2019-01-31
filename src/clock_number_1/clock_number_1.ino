@@ -1,3 +1,13 @@
+//******************* HEADER ***********************************
+/*
+Name : clock_number_1
+Title : Arduino Real Time Clock with Alarm and environmental sensors
+Description : Arduino Clock , with , Battery backup (real time clock), Time, Date, Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep mode, LED LCD lighting (4X) white with dimmer control
+Author: Gavin Lyons
+URL: https://github.com/gavinlyonsrepo/Arduino_Clock_1
+*/
+//*************************** Libraries ********************
+//#include <Wire.h>
 #include <LCD5110_Graph.h> //5110 Nokia
 #include <Keypad.h> //keypad
 #include <SFE_BMP180.h> //pressure
@@ -5,6 +15,8 @@
 #include <DS1307RTC.h>
 #include <Sleep_n0m1.h> //https://github.com/n0m1/Sleep_n0m1
 
+
+//*************************** GLOBALS ********************
 //clock
 char settime[12];
 
@@ -42,6 +54,9 @@ extern unsigned char SmallFont[];
 extern unsigned char BigNumbers[];
 boolean sleepset = false; //sleep
   
+
+//*************************** SETUP ************************
+
 void setup() {
   // put your setup code here, to run once:  
    
@@ -63,12 +78,157 @@ void setup() {
   delay(50);
 }
 
-void loop() {
- char timebuf[5];  // Time
-char datebuf[7];  // Date
+
+//******************* MAIN LOOP *****************
+void loop() 
+{
  lcd.clrScr();
   delay(5);
  //scan the keypad
+ keypadscan();
+ //Display the time and check alarm
+ Displaytime();
+}
+
+
+// ********************* FUNCTIONS *************************
+
+void Displaytime()
+{
+char timebuf[5];  // Time
+char datebuf[7];  // Date
+//time date RTC
+  tmElements_t tm;
+  if (RTC.read(tm)) {
+    int year2digit=0;  // 2 digit year
+    year2digit = tm.Year - 30;  // 2 digit year variable
+    //year4digit = tm.Year + 1970;  // 4 digit year variable
+        sprintf(timebuf, "%02d%02d", tm.Hour, tm.Minute); // format time
+        sprintf(datebuf, "%02d%02d%02d", tm.Day, tm.Month, year2digit); // format date
+        delay(1);
+   //check alarm
+   if ((timebuf[0] == alarm[0]) and (timebuf[1] == alarm[1]) and (timebuf[2] == alarm[2]) and  (timebuf[3] == alarm[3]))
+        {
+          //turn on  alarm
+          digitalWrite(buzzer,HIGH);
+          
+        } 
+   //GUI time
+   lcd.setFont(BigNumbers);
+   lcd.print(timebuf,LEFT+15,1);     
+   lcd.setFont(BigNumbers);
+   lcd.print(datebuf, LEFT, 25);
+     //gui alarm symbol
+        lcd.setFont(SmallFont);
+        if (alarmOn == true)
+        {
+          lcd.print("A", LEFT+5, 5);
+        }else
+        {
+          lcd.print(" ", LEFT+5, 5);
+        }
+   lcd.update();
+   delay(200); /// stop flicker
+  }else
+  {//clock running error messages 
+  	clockerrormsg();
+  }
+}
+
+
+
+//Function to handle clock error an display message to screen.
+void clockerrormsg()
+{
+ if (RTC.chipPresent()) {
+      lcd.setFont(SmallFont);
+      lcd.print(" DS1307 RTC", LEFT, 0);
+      lcd.print("is stopped.", LEFT, 10);
+      lcd.print("Please run ", LEFT, 20);
+      lcd.print("SetTime", LEFT, 30);
+      lcd.print("key 9", LEFT, 40);
+      lcd.update();
+      delay(3000);
+      lcd.clrScr();
+      delay(50);     
+    } else {
+      lcd.setFont(SmallFont);
+      lcd.print(" DS1307 RTC", LEFT, 0);
+      lcd.print("read error!", LEFT, 10);
+      lcd.print("Please check", LEFT, 20);
+      lcd.print("circuitry", LEFT, 30);
+      lcd.print("& battery", LEFT, 40);
+      lcd.update();
+      delay(3000);
+      lcd.clrScr();
+      delay(50);  
+    }
+ }
+
+//Function to display keypad help
+void keypadhelp()
+{
+      lcd.setFont(SmallFont);
+      lcd.print("0:Sleep 6hr", LEFT, 10);
+      lcd.print("1:Temperture", LEFT, 20);
+      lcd.print("2:Humdity", LEFT, 30);
+      lcd.print("3:Pressure", LEFT, 40);
+      lcd.update();
+      delay(3000);
+      lcd.clrScr();
+      delay(50);
+      
+      lcd.print("4:Alarm Show", LEFT, 10);
+      lcd.print("5:Alarm Set", LEFT, 20);     
+      lcd.print("6:Alarm Test", LEFT, 30);
+       lcd.print("*:Alarm Stop", LEFT, 40);
+       lcd.update();
+      delay(3000);
+      lcd.clrScr();
+      delay(50);
+      
+      lcd.print("7:Keypad help", LEFT, 10);
+      lcd.print("8:LCD on/off", LEFT, 20);
+      lcd.print("9:Set timedate", LEFT, 30);
+      lcd.print("#:Screen reset", LEFT, 40);
+      lcd.update();
+      delay(3000);
+      lcd.clrScr();
+      delay(50);
+      
+}
+
+//Function to Turn on LCD Sleep mode(Note: not Arudino sleep mode)
+void SleepSet()
+{
+sleepset = !sleepset;
+if (sleepset == true)
+  {
+    lcd.setFont(SmallFont);
+    lcd.print("LCD Sleep", LEFT, 15);
+    lcd.print("Mode ON", LEFT, 25);
+    lcd.update();
+    delay(1000);
+    lcd.clrScr();
+    delay(10);  
+    lcd.enableSleep();
+   }else {
+     
+     lcd.disableSleep();
+     delay(50);
+     lcd.setFont(SmallFont);
+     lcd.print("LCD Sleep", LEFT, 15);
+    lcd.print("Mode OFF", LEFT, 25);
+     lcd.update();
+     delay(1000);
+      lcd.clrScr();
+      delay(10);  
+      }
+}
+
+//Function To scan keypad
+void keypadscan()
+{
   char key = keypad.getKey();
   if (key) // Check for a valid key.
   {
@@ -135,129 +295,9 @@ char datebuf[7];  // Date
       break;
       }
   }
-
-  //time date RTC
-  tmElements_t tm;
-  if (RTC.read(tm)) {
-    int year2digit=0;  // 2 digit year
-    year2digit = tm.Year - 30;  // 2 digit year variable
-    //year4digit = tm.Year + 1970;  // 4 digit year variable
-        sprintf(timebuf, "%02d%02d", tm.Hour, tm.Minute); // format time
-        sprintf(datebuf, "%02d%02d%02d", tm.Day, tm.Month, year2digit); // format date
-        delay(1);
-   //check alarm
-   if ((timebuf[0] == alarm[0]) and (timebuf[1] == alarm[1]) and (timebuf[2] == alarm[2]) and  (timebuf[3] == alarm[3]))
-        {
-          //turn on  alarm
-          digitalWrite(buzzer,HIGH);
-          
-        } 
-   //GUI time
-   lcd.setFont(BigNumbers);
-   lcd.print(timebuf,LEFT+15,1);     
-   lcd.setFont(BigNumbers);
-   lcd.print(datebuf, LEFT, 25);
-     //gui alarm symbol
-        lcd.setFont(SmallFont);
-        if (alarmOn == true)
-        {
-          lcd.print("A", LEFT+5, 5);
-        }else
-        {
-          lcd.print(" ", LEFT+5, 5);
-        }
-   lcd.update();
-   delay(200); /// stop flicker
-  }else
-  {//clock running error messages 
-   if (RTC.chipPresent()) {
-      lcd.setFont(SmallFont);
-      lcd.print(" DS1307 RTC", LEFT, 0);
-      lcd.print("is stopped.", LEFT, 10);
-      lcd.print("Please run ", LEFT, 20);
-      lcd.print("SetTime", LEFT, 30);
-      lcd.print("key 9", LEFT, 40);
-      lcd.update();
-      delay(3000);
-      lcd.clrScr();
-      delay(50);     
-    } else {
-      lcd.setFont(SmallFont);
-      lcd.print(" DS1307 RTC", LEFT, 0);
-      lcd.print("read error!", LEFT, 10);
-      lcd.print("Please check", LEFT, 20);
-      lcd.print("circuitry", LEFT, 30);
-      lcd.print("& battery", LEFT, 40);
-      lcd.update();
-      delay(3000);
-      lcd.clrScr();
-      delay(50);  
-    }
-
-    }
-}//end of main
-
-//Function to display keypad help
-void keypadhelp()
-{
-      lcd.setFont(SmallFont);
-      lcd.print("0:Sleep 6hr", LEFT, 10);
-      lcd.print("1:Temperture", LEFT, 20);
-      lcd.print("2:Humdity", LEFT, 30);
-      lcd.print("3:Pressure", LEFT, 40);
-      lcd.update();
-      delay(3000);
-      lcd.clrScr();
-      delay(50);
-      
-      lcd.print("4:Alarm Show", LEFT, 10);
-      lcd.print("5:Alarm Set", LEFT, 20);     
-      lcd.print("6:Alarm Test", LEFT, 30);
-       lcd.print("*:Alarm Stop", LEFT, 40);
-       lcd.update();
-      delay(3000);
-      lcd.clrScr();
-      delay(50);
-      
-      lcd.print("7:Keypad help", LEFT, 10);
-      lcd.print("8:LCD on/off", LEFT, 20);
-      lcd.print("9:Set timedate", LEFT, 30);
-      lcd.print("#:Screen reset", LEFT, 40);
-      lcd.update();
-      delay(3000);
-      lcd.clrScr();
-      delay(50);
-      
 }
 
-void SleepSet()
-{
-sleepset = !sleepset;
-if (sleepset == true)
-  {
-    lcd.setFont(SmallFont);
-    lcd.print("LCD Sleep", LEFT, 15);
-    lcd.print("Mode ON", LEFT, 25);
-    lcd.update();
-    delay(1000);
-    lcd.clrScr();
-    delay(10);  
-    lcd.enableSleep();
-   }else {
-     
-     lcd.disableSleep();
-     delay(50);
-     lcd.setFont(SmallFont);
-     lcd.print("LCD Sleep", LEFT, 15);
-    lcd.print("Mode OFF", LEFT, 25);
-     lcd.update();
-     delay(1000);
-      lcd.clrScr();
-      delay(10);  
-      }
-}
-
-//function display pressure
+//function display pressure BM180 sensor to screen
 void DisplayPressure()
 {
     //pressure
@@ -362,6 +402,7 @@ void DisplayPressure()
   
 }
 
+//Function to dislpay Set Alarm  time to LCD
 void DisplayAlarm()
 {
   //alarm
@@ -377,6 +418,8 @@ void DisplayAlarm()
   lcd.clrScr();
   delay(1);
 }
+
+//Function to Display LM35 sensor data to LCD
 void DisplayLM() 
 {
   //lm35
@@ -399,6 +442,8 @@ void DisplayLM()
   lcd.clrScr();
   delay(10);
 }
+
+//Function  to Display DHT11 sensor data to LCD
 void DisplayDHT()
 { //dht11.
   dht DHT;
@@ -429,6 +474,7 @@ void DisplayDHT()
   delay(1);  
 }
 
+//Function to set time
 void setmytime()
 {
   
@@ -475,6 +521,7 @@ void setmytime()
 delay(50);
 }
 
+//Function to set the  Alarm
 void SetAlarm()
 {
   //clear variables
@@ -504,6 +551,7 @@ void SetAlarm()
   }
 }
 
+//function to stop alarm
 void StopAlarm()
 { 
   digitalWrite(buzzer,LOW);  
@@ -519,6 +567,7 @@ void StopAlarm()
   delay(10);
 }
 
+// sleepmode function 
 void sleepmode() 
 {   
    Sleep sleep;
@@ -537,3 +586,4 @@ void sleepmode()
     delay(50);     
   
 }
+//*************************** EOF *****************************
