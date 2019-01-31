@@ -36,7 +36,8 @@ char alarm[4];    //alarm
 boolean alarmOn = false;
 
 //LCD Nokia 5110
- LCD5110 lcd(2, 3, 4, 6, 5);
+// (SCK/CLK, MOSI/DIN, DC, RST, CS/CE)
+LCD5110 lcd(2, 3, 4, 6, 5);
 extern unsigned char SmallFont[];
 extern unsigned char BigNumbers[];
 boolean sleepset = false; //sleep

@@ -5,7 +5,6 @@ Overview
 * Description : Arduino Clock , with , Battery backup (real time clock), Time, Date, Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep mode, LED LCD lighting (4X) white with dimmer control
 * Author: Gavin Lyons
 
-
 Libraries
 ------------------------
 
@@ -23,22 +22,19 @@ All are standard libraries which can be found on Arduino website site except "sl
 
 Parts List
 ------------------------------
-See fritzing diagram in "doc" for assembly instruction and schematic. 
-You will need [fritzing](https://en.wikipedia.org/wiki/Fritzing) software to open this.
+See eagle schematic "doc". 
 
 You will need following parts
 
 >Nokia 5110 LCD module
 >
->Arduino UNO rev 3
+>Arduino UNO rev 3 or NANO
 >
->Keypad 4x3 or 4x4 I use 4x4 but leave last column unconnected so its a 4x3 in effect
+>Keypad 4x3 (note: 4x4 I use 4x4 but leave last column unconnected so its a 4x3 in effect)
 >
 >DS 1307 Real Time Clock module (with battery)
 >
->9 Volt power supply unit or battery
->
->2 X10K resistors pullups for I2C bus
+>7 * 10K resistors, 1 * 10ohm resistors
 >
 >LM35 temperature sensor
 >
@@ -46,13 +42,16 @@ You will need following parts
 >
 >DHT11 humidity Sensor module
 >
->one 10K potentimeter + nut and knob (adjust brightness of LCD LEDs)
+>one 10K potentiometer 
 >
->one active piezo buzzer (alarm)
+>one active buzzer (alarm)
 >
->Protoboard, wire, solder, tape,small screws and nuts
->
->one enclosure 
+
+
+Schematic
+---------------------------
+
+![ScreenShot schematic](https://github.com/gavinlyonsrepo/Arduino_Clock_1/blob/master/doc/eagle/clock1.png)
 
 Copyright
 -------------------------------
