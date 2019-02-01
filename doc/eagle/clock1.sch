@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.1.3">
+<eagle version="9.3.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -4472,34 +4472,97 @@ Source: http://www.alphapotentiometers.net/html/16mm_pot_2.html</description>
 <part name="R8" library="eagle-ltspice" library_urn="urn:adsk.eagle:library:217" deviceset="R" device="0204/7" package3d_urn="urn:adsk.eagle:package:13274/1" value="10k"/>
 <part name="SG1" library="buzzer" library_urn="urn:adsk.eagle:library:113" deviceset="B/C11L" device="" package3d_urn="urn:adsk.eagle:package:5280/1" value="buzzer"/>
 <part name="R9" library="eagle-ltspice" library_urn="urn:adsk.eagle:library:217" deviceset="R" device="0204/7" package3d_urn="urn:adsk.eagle:package:13274/1" value="10"/>
+<part name="R10" library="eagle-ltspice" library_urn="urn:adsk.eagle:library:217" deviceset="R" device="0204/7" package3d_urn="urn:adsk.eagle:package:13274/1" value="220"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="U$1" gate="G$1" x="60.96" y="60.96"/>
-<instance part="J1" gate="J$1" x="-20.32" y="71.12"/>
-<instance part="J2" gate="G$1" x="-20.32" y="50.8"/>
-<instance part="J3" gate="G$1" x="-20.32" y="30.48"/>
-<instance part="SUPPLY1" gate="GND" x="15.24" y="40.64"/>
-<instance part="SUPPLY2" gate="G$1" x="15.24" y="99.06"/>
-<instance part="R1" gate="G$1" x="17.78" y="83.82" rot="R90"/>
-<instance part="R2" gate="G$1" x="27.94" y="83.82" rot="R90"/>
-<instance part="J5" gate="J$1" x="-20.32" y="88.9"/>
-<instance part="SUPPLY3" gate="GND" x="-10.16" y="96.52" rot="R180"/>
-<instance part="J4" gate="G$1" x="129.54" y="73.66" rot="R180"/>
-<instance part="J6" gate="G$1" x="129.54" y="40.64" rot="R180"/>
-<instance part="R3" gate="G$1" x="99.06" y="25.4"/>
-<instance part="SUPPLY4" gate="GND" x="99.06" y="17.78"/>
-<instance part="SUPPLY5" gate="GND" x="99.06" y="17.78"/>
-<instance part="R4" gate="G$1" x="109.22" y="48.26"/>
-<instance part="R5" gate="G$1" x="109.22" y="45.72"/>
-<instance part="R6" gate="G$1" x="109.22" y="43.18"/>
-<instance part="R7" gate="G$1" x="109.22" y="40.64"/>
-<instance part="R8" gate="G$1" x="109.22" y="38.1"/>
-<instance part="SG1" gate="G$1" x="12.7" y="15.24" rot="R90"/>
-<instance part="R9" gate="G$1" x="22.86" y="20.32"/>
+<instance part="U$1" gate="G$1" x="60.96" y="60.96" smashed="yes"/>
+<instance part="J1" gate="J$1" x="-20.32" y="71.12" smashed="yes">
+<attribute name="VALUE" x="-22.86" y="63.754" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-22.86" y="76.708" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="J2" gate="G$1" x="-20.32" y="50.8" smashed="yes">
+<attribute name="VALUE" x="-25.4" y="45.466" size="1.778" layer="96" font="vector" align="top-left"/>
+<attribute name="NAME" x="-25.4" y="58.674" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="J3" gate="G$1" x="-20.32" y="30.48" smashed="yes">
+<attribute name="VALUE" x="-25.4" y="25.146" size="1.778" layer="96" font="vector" align="top-left"/>
+<attribute name="NAME" x="-25.4" y="38.354" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="SUPPLY1" gate="GND" x="15.24" y="40.64" smashed="yes">
+<attribute name="VALUE" x="13.335" y="37.465" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY2" gate="G$1" x="15.24" y="99.06" smashed="yes">
+<attribute name="VALUE" x="13.335" y="102.235" size="1.778" layer="96"/>
+</instance>
+<instance part="R1" gate="G$1" x="17.78" y="83.82" smashed="yes" rot="R90">
+<attribute name="NAME" x="16.2814" y="80.01" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="21.082" y="80.01" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R2" gate="G$1" x="27.94" y="83.82" smashed="yes" rot="R90">
+<attribute name="NAME" x="26.4414" y="80.01" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="31.242" y="80.01" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="J5" gate="J$1" x="-20.32" y="88.9" smashed="yes">
+<attribute name="VALUE" x="-22.86" y="81.534" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-22.86" y="94.488" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="SUPPLY3" gate="GND" x="-10.16" y="96.52" smashed="yes" rot="R180">
+<attribute name="VALUE" x="-8.255" y="99.695" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="J4" gate="G$1" x="129.54" y="73.66" smashed="yes" rot="R180">
+<attribute name="VALUE" x="134.62" y="83.566" size="1.778" layer="96" font="vector" rot="R180"/>
+<attribute name="NAME" x="134.62" y="60.452" size="1.778" layer="95" font="vector" rot="R180"/>
+</instance>
+<instance part="J6" gate="G$1" x="129.54" y="40.64" smashed="yes" rot="R180">
+<attribute name="VALUE" x="134.62" y="53.086" size="1.778" layer="96" font="vector" rot="R180"/>
+<attribute name="NAME" x="134.62" y="27.432" size="1.778" layer="95" font="vector" rot="R180"/>
+</instance>
+<instance part="R3" gate="G$1" x="86.36" y="25.4" smashed="yes">
+<attribute name="NAME" x="80.391" y="21.59" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="82.55" y="21.59" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="SUPPLY4" gate="GND" x="99.06" y="17.78" smashed="yes">
+<attribute name="VALUE" x="97.155" y="14.605" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY5" gate="GND" x="99.06" y="17.78" smashed="yes">
+<attribute name="VALUE" x="97.155" y="14.605" size="1.778" layer="96"/>
+</instance>
+<instance part="R4" gate="G$1" x="109.22" y="48.26" smashed="yes">
+<attribute name="NAME" x="105.41" y="49.7586" size="1.778" layer="95"/>
+<attribute name="VALUE" x="105.41" y="44.958" size="1.778" layer="96"/>
+</instance>
+<instance part="R5" gate="G$1" x="109.22" y="45.72" smashed="yes">
+<attribute name="NAME" x="105.41" y="47.2186" size="1.778" layer="95"/>
+<attribute name="VALUE" x="105.41" y="42.418" size="1.778" layer="96"/>
+</instance>
+<instance part="R6" gate="G$1" x="109.22" y="43.18" smashed="yes">
+<attribute name="NAME" x="105.41" y="44.6786" size="1.778" layer="95"/>
+<attribute name="VALUE" x="105.41" y="39.878" size="1.778" layer="96"/>
+</instance>
+<instance part="R7" gate="G$1" x="109.22" y="40.64" smashed="yes">
+<attribute name="NAME" x="105.41" y="42.1386" size="1.778" layer="95"/>
+<attribute name="VALUE" x="105.41" y="37.338" size="1.778" layer="96"/>
+</instance>
+<instance part="R8" gate="G$1" x="109.22" y="38.1" smashed="yes">
+<attribute name="NAME" x="105.41" y="39.5986" size="1.778" layer="95"/>
+<attribute name="VALUE" x="105.41" y="34.798" size="1.778" layer="96"/>
+</instance>
+<instance part="SG1" gate="G$1" x="12.7" y="15.24" smashed="yes" rot="R90">
+<attribute name="NAME" x="6.35" y="12.7" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="12.7" y="21.59" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R9" gate="G$1" x="22.86" y="20.32" smashed="yes">
+<attribute name="NAME" x="19.05" y="21.8186" size="1.778" layer="95"/>
+<attribute name="VALUE" x="19.05" y="17.018" size="1.778" layer="96"/>
+</instance>
+<instance part="R10" gate="G$1" x="101.6" y="25.4" smashed="yes">
+<attribute name="NAME" x="97.79" y="26.8986" size="1.778" layer="95"/>
+<attribute name="VALUE" x="97.79" y="22.098" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4535,16 +4598,17 @@ Source: http://www.alphapotentiometers.net/html/16mm_pot_2.html</description>
 <wire x1="124.46" y1="30.48" x2="114.3" y2="30.48" width="0.1524" layer="91"/>
 <label x="116.84" y="30.48" size="1.778" layer="95"/>
 <wire x1="114.3" y1="30.48" x2="114.3" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="20.32" x2="111.76" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="R3" gate="G$1" pin="A"/>
-<wire x1="111.76" y1="20.32" x2="99.06" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="20.32" x2="99.06" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="SUPPLY4" gate="GND" pin="GND"/>
-<junction x="99.06" y="20.32"/>
+<junction x="86.36" y="20.32"/>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
 <pinref part="SG1" gate="G$1" pin="1"/>
 <wire x1="15.24" y1="12.7" x2="73.66" y2="12.7" width="0.1524" layer="91"/>
 <wire x1="73.66" y1="12.7" x2="73.66" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="20.32" x2="99.06" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="20.32" x2="86.36" y2="20.32" width="0.1524" layer="91"/>
+<junction x="99.06" y="20.32"/>
+<wire x1="86.36" y1="20.32" x2="99.06" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -4741,24 +4805,24 @@ Source: http://www.alphapotentiometers.net/html/16mm_pot_2.html</description>
 <pinref part="J6" gate="G$1" pin="7"/>
 <wire x1="124.46" y1="33.02" x2="116.84" y2="33.02" width="0.1524" layer="91"/>
 <label x="116.84" y="33.02" size="1.778" layer="95"/>
-<pinref part="R3" gate="G$1" pin="S"/>
 <wire x1="116.84" y1="33.02" x2="114.3" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="104.14" y1="25.4" x2="111.76" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="111.76" y1="25.4" x2="111.76" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="111.76" y1="33.02" x2="116.84" y2="33.02" width="0.1524" layer="91"/>
 <junction x="116.84" y="33.02"/>
+<wire x1="109.22" y1="25.4" x2="111.76" y2="25.4" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="106.68" y1="25.4" x2="109.22" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC3.3" class="0">
 <segment>
 <pinref part="J6" gate="G$1" pin="6"/>
-<wire x1="124.46" y1="35.56" x2="114.3" y2="35.56" width="0.1524" layer="91"/>
 <label x="116.84" y="35.56" size="1.778" layer="95"/>
-<wire x1="114.3" y1="35.56" x2="99.06" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="35.56" x2="86.36" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="R3" gate="G$1" pin="E"/>
-<wire x1="99.06" y1="35.56" x2="99.06" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="35.56" x2="93.98" y2="35.56" width="0.1524" layer="91"/>
-<junction x="99.06" y="35.56"/>
+<wire x1="86.36" y1="35.56" x2="86.36" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="35.56" x2="93.98" y2="35.56" width="0.1524" layer="91"/>
+<junction x="86.36" y="35.56"/>
 <label x="86.36" y="35.56" size="1.778" layer="95"/>
 </segment>
 <segment>
@@ -4821,12 +4885,6 @@ Source: http://www.alphapotentiometers.net/html/16mm_pot_2.html</description>
 <wire x1="71.12" y1="76.2" x2="124.46" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$17" class="0">
-<segment>
-<wire x1="160.02" y1="15.24" x2="149.86" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="149.86" y1="15.24" x2="149.86" y2="20.32" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$18" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="A3"/>
@@ -4844,6 +4902,13 @@ Source: http://www.alphapotentiometers.net/html/16mm_pot_2.html</description>
 <pinref part="R9" gate="G$1" pin="1"/>
 <pinref part="SG1" gate="G$1" pin="2"/>
 <wire x1="17.78" y1="20.32" x2="15.24" y2="20.32" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$20" class="0">
+<segment>
+<pinref part="R10" gate="G$1" pin="1"/>
+<pinref part="R3" gate="G$1" pin="S"/>
+<wire x1="96.52" y1="25.4" x2="91.44" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

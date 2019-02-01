@@ -34,7 +34,7 @@ You will need following parts
 >
 >DS 1307 Real Time Clock module (with battery)
 >
->7 * 10K resistors, 1 * 10ohm resistors
+>7*10K , 1*10ohm  , 1*220ohm  resistors
 >
 >LM35 temperature sensor
 >
