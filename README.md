@@ -34,7 +34,7 @@ You will need following parts
 >
 >DS 1307 Real Time Clock module (with battery)
 >
->7*10K , 1*10ohm  , 1*220ohm  resistors
+>7 X 10K , 1 X 10ohm  , 1 X 220ohm  resistors
 >
 >LM35 temperature sensor
 >
@@ -47,6 +47,12 @@ You will need following parts
 >one active buzzer (alarm)
 >
 
+Current Consumption:
+
+1. 27mA, On with LEDs on Nokia LCD set to min.
+2. 25mA, Nokia LCD sleep mode On.
+3. 18mA, Atmega328p Sleep mode On.
+4. 40mA, On with LEDs on Nokia LCD set to max.
 
 Schematic
 ---------------------------
