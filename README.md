@@ -59,6 +59,23 @@ Schematic
 
 ![ScreenShot schematic](https://github.com/gavinlyonsrepo/Arduino_Clock_1/blob/master/doc/eagle/clock1.png)
 
+
+Keypad function
+--------------------------------
+
+* 1, LM35 sensor data
+* 2, DHT11 sensor data
+* 3, BMP180 sens data 
+* 4, Alarm Show
+* 5, Alarm Set
+* 6, Alarm Test
+* 7, Help Mode
+* 8, LCD on/off
+* 9, Set date and time
+* 0, Sleep mode
+* Asterisk, Alarm Stop
+* Hash, LCD reset
+
 Copyright
 -------------------------------
 
