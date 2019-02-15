@@ -2,23 +2,27 @@ Overview
 --------------------
 * Name : clock_number_1
 * Title : Arduino Real Time Clock with Alarm and environmental sensors
-* Description : Arduino Clock, Features: Battery backup (real time clock), Time, Date, Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep modes, LED LCD lighting (4X) white with dimmer control.
+* Description : Arduino Clock, Features: RTC with battery (real time clock), Time, Date, Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep modes, LED LCD lighting (4X) white with dimmer control.
 * Author: Gavin Lyons
 
-Libraries
+Software Used
+------------------
+Arduino 1.8.5
+
+Eagle 9.0.1
+
+Libraries Used
 ------------------------
 
-In src folder you will find the ino file which contains the source code 
-It calls from a number of libraries.
+| Name | Function | Version | Link |
+| --- | --- | --- | --- |
+| Keypad.h | keypad | 3.1.1  | [URL](https://github.com/Chris--A/Keypad)  |
+| SFE_BMP180.h | BMP180 sensor | n/a | [URL](https://github.com/LowPowerLab/SFE_BMP180) |
+| LCD5110_Graph.h | LCD 5110 | 2.13  | [URL](http://www.rinkydinkelectronics.com/library.php?id=47)  |
+| dht.h  | DHT11 sensor | 0.1.0  | [URL](https://github.com/RobTillaart/Arduino/tree/master/libraries/DHTlib) |
+| DS1307RTC.h  | RTC | 1.4.1 |  [URL](https://github.com/PaulStoffregen/DS1307RTC) |
+| Sleep_n0m1.h | Sleep mode | 1.1.0 | [URL](https://github.com/n0m1/Sleep_n0m1) |
 
-* <LCD5110_Graph.h> //5110 Nokia LCD
-* <Keypad.h> //keypad
-* <SFE_BMP180.h> //pressure sensor
-* <dht.h> //DHT11 humidity sensor
-* <DS1307RTC.h> //Real time clock
-* <Sleep_n0m1.h> //sleep function https://github.com/n0m1/Sleep_n0m1
-
-All are standard libraries which can be found on Arduino website site except "sleep_n0m1" see link.
 
 Parts List
 ------------------------------
@@ -26,11 +30,12 @@ See eagle schematic in "doc" folder.
 
 You will need following parts
 
+>
 >Nokia 5110 LCD module
 >
 >Arduino UNO rev 3 or NANO
 >
->Keypad 4x3 (note: 4x4 I use 4x4 but leave last column unconnected so its a 4x3 in effect)
+>Keypad 4x3 (note: I use 4x4 but leave last column unconnected so its a 4x3 in effect)
 >
 >DS 1307 Real Time Clock module (with battery)
 >
@@ -59,7 +64,6 @@ Schematic
 ---------------------------
 
 ![ScreenShot schematic](https://github.com/gavinlyonsrepo/Arduino_Clock_1/blob/master/doc/eagle/clock1.png)
-
 
 Keypad function
 --------------------------------
