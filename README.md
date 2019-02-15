@@ -2,7 +2,7 @@ Overview
 --------------------
 * Name : clock_number_1
 * Title : Arduino Real Time Clock with Alarm and environmental sensors
-* Description : Arduino Clock , with , Battery backup (real time clock), Time, Date, Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep mode, LED LCD lighting (4X) white with dimmer control
+* Description : Arduino Clock, Features: Battery backup (real time clock), Time, Date, Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep modes, LED LCD lighting (4X) white with dimmer control.
 * Author: Gavin Lyons
 
 Libraries
@@ -11,7 +11,7 @@ Libraries
 In src folder you will find the ino file which contains the source code 
 It calls from a number of libraries.
 
-* <LCD5110_Graph.h> //5110 Nokia
+* <LCD5110_Graph.h> //5110 Nokia LCD
 * <Keypad.h> //keypad
 * <SFE_BMP180.h> //pressure sensor
 * <dht.h> //DHT11 humidity sensor
@@ -22,7 +22,7 @@ All are standard libraries which can be found on Arduino website site except "sl
 
 Parts List
 ------------------------------
-See eagle schematic "doc". 
+See eagle schematic in "doc" folder.
 
 You will need following parts
 
@@ -49,10 +49,11 @@ You will need following parts
 
 Current Consumption:
 
-1. 27mA, On with LEDs on Nokia LCD set to min.
-2. 25mA, Nokia LCD sleep mode On.
-3. 18mA, Atmega328p Sleep mode On.
-4. 40mA, On with LEDs on Nokia LCD set to max.
+1. 40mA, Unit On with LEDs on Nokia LCD set to max.
+2. 26mA, Unit On with LEDs on Nokia LCD set to min.
+3. 24mA, Above with Nokia LCD sleep mode On.
+4. 15mA, Above with Atmega328p  (Unit) Sleep mode On.
+
 
 Schematic
 ---------------------------
@@ -65,16 +66,16 @@ Keypad function
 
 * 1, LM35 sensor data
 * 2, DHT11 sensor data
-* 3, BMP180 sens data 
+* 3, BMP180 sensor data 
 * 4, Alarm Show
 * 5, Alarm Set
-* 6, Alarm Test
-* 7, Help Mode
-* 8, LCD on/off
+* 6, Buzzer Test
+* 7, Display keypad Help information
+* 8, LCD screen Sleep mode on/off
 * 9, Set date and time
-* 0, Sleep mode
+* 0, Unit Sleep mode, wakes at Alarm.
 * Asterisk, Alarm Stop
-* Hash, LCD reset
+* Hash, LCD screen reset ( In event of LCD problem)
 
 Copyright
 -------------------------------

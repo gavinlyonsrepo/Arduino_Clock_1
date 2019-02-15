@@ -1,11 +1,15 @@
-//******************* HEADER ***********************************
+//******************* HEADER ********************************
 /*
 Name : clock_number_1
 Title : Arduino Real Time Clock with Alarm and environmental sensors
-Description : Arduino Clock , with , Battery backup (real time clock), Time, Date, Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep mode, LED LCD lighting (4X) white with dimmer control
+Description : Arduino Clock , with , Battery backup (real time clock), Time, Date, 
+Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep modes
+,
+LED LCD lighting (4X) white with dimmer control
 Author: Gavin Lyons
 URL: https://github.com/gavinlyonsrepo/Arduino_Clock_1
 */
+
 //*************************** Libraries ********************
 //#include <Wire.h>
 #include <LCD5110_Graph.h> //5110 Nokia
@@ -14,7 +18,6 @@ URL: https://github.com/gavinlyonsrepo/Arduino_Clock_1
 #include <dht.h> //DHT11
 #include <DS1307RTC.h>
 #include <Sleep_n0m1.h> //https://github.com/n0m1/Sleep_n0m1
-
 
 //*************************** GLOBALS ********************
 //clock
@@ -54,40 +57,24 @@ extern unsigned char SmallFont[];
 extern unsigned char BigNumbers[];
 boolean sleepset = false; //sleep
   
-
 //*************************** SETUP ************************
-
-void setup() {
-  // put your setup code here, to run once:  
+void setup() { 
    
    //buzzer
   pinMode(buzzer, OUTPUT);
   digitalWrite(buzzer,LOW);
   
   //init LCD
-  lcd.InitLCD();
-  lcd.setContrast(62);
-  lcd.setFont(SmallFont);
-  lcd.print("Alarm Clock", LEFT, 5);
-  lcd.print("Gavin Lyons", LEFT, 15);
-  lcd.print("Press Seven", LEFT, 25);
-  lcd.print("for help.", LEFT, 35);
-  lcd.update();
-  delay(3500);
-  lcd.clrScr();
-  delay(50);
+  InitTheLCD();
 }
-
 
 //******************* MAIN LOOP *****************
 void loop() 
 {
- lcd.clrScr();
-  delay(5);
- //scan the keypad
- keypadscan();
- //Display the time and check alarm
- Displaytime();
+   lcd.clrScr();
+   delay(5);
+   keypadscan();  //scan the keypad
+   Displaytime(); //Display the time and check alarm
 }
 
 
@@ -144,9 +131,8 @@ void clockerrormsg()
       lcd.setFont(SmallFont);
       lcd.print(" DS1307 RTC", LEFT, 0);
       lcd.print("is stopped.", LEFT, 10);
-      lcd.print("Please run ", LEFT, 20);
-      lcd.print("SetTime", LEFT, 30);
-      lcd.print("key 9", LEFT, 40);
+      lcd.print("Check ", LEFT, 20);
+      lcd.print("Battery", LEFT, 30);
       lcd.update();
       delay(3000);
       lcd.clrScr();
@@ -284,14 +270,7 @@ void keypadscan()
         break;
       case '#': 
       //lcd reset
-      lcd.InitLCD();
-      lcd.setContrast(62);
-      lcd.setFont(SmallFont);
-      lcd.print("LCD reset", CENTER, 20);
-      lcd.update();
-      delay(1000);
-      lcd.clrScr();
-      delay(50);
+      lcdReset();
       break;
       }
   }
@@ -567,23 +546,70 @@ void StopAlarm()
   delay(10);
 }
 
-// sleepmode function 
+// Unit sleepmode function 
 void sleepmode() 
 {   
-   Sleep sleep;
-   //sleep mode for six hours
-   //turn off
+    char timebuf[5];  // Time
+    tmElements_t tm;
+    Sleep sleep;
+    
+    //Pre sleep message
+    lcd.setFont(SmallFont);
+    lcd.print("Unit Sleep", LEFT, 15);
+    lcd.print("Mode ON", LEFT, 25);
+    lcd.print("Wake on Alarm", LEFT, 25);
+    lcd.update();
+    delay(1000);
+    lcd.clrScr(); 
+    delay(50);
+    
+     //turn off LCD
      lcd.enableSleep();
      delay(50);
-     //sleepmode      
-    sleep.pwrDownMode(); //set sleep mode
-    //sleep for six hours 1000*60*60*6=21600000
-    sleep.sleepDelay(21600000); //sleep 
-    //sleep.sleepDelay(21600000); //sleep 
-     //turn on LCD
-   // Serial.println("wake");   
-    lcd.disableSleep();  
-    delay(50);     
-  
+    
+    while(1){
+      sleep.pwrDownMode(); //set sleep mode
+      sleep.sleepDelay(50000); //sleep 50 secs
+      delay(50);      
+      if (RTC.read(tm)) 
+          {
+            sprintf(timebuf, "%02d%02d", tm.Hour, tm.Minute); // format time
+           //check alarm
+           if ((timebuf[0] == alarm[0]) and (timebuf[1] == alarm[1]) and (timebuf[2] == alarm[2]) and  (timebuf[3] == alarm[3]))
+                {
+                  //go back to main loop to trigger alarm
+                  lcd.disableSleep();
+                  return;
+                } 
+          }
+    } // loop forever until Alarm set
+}
+
+// Function to initailise LCD
+void InitTheLCD()
+{
+  lcd.InitLCD();
+  lcd.setContrast(62);
+  lcd.setFont(SmallFont);
+  lcd.print("Alarm Clock", LEFT, 5);
+  lcd.print("Gavin Lyons", LEFT, 15);
+  lcd.print("Press Seven", LEFT, 25);
+  lcd.print("For Help.", LEFT, 35);
+  lcd.update();
+  delay(3500);
+  lcd.clrScr();
+  delay(50);
+}
+
+void lcdReset()
+{
+      lcd.InitLCD();
+      lcd.setContrast(62);
+      lcd.setFont(SmallFont);
+      lcd.print("LCD reset", CENTER, 20);
+      lcd.update();
+      delay(1000);
+      lcd.clrScr();
+      delay(50);
 }
 //*************************** EOF *****************************
