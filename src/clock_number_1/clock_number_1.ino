@@ -143,7 +143,6 @@ void clockerrormsg()
       lcd.print("read error!", LEFT, 10);
       lcd.print("Please check", LEFT, 20);
       lcd.print("circuitry", LEFT, 30);
-      lcd.print("& battery", LEFT, 40);
       lcd.update();
       delay(3000);
       lcd.clrScr();
@@ -155,7 +154,7 @@ void clockerrormsg()
 void keypadhelp()
 {
       lcd.setFont(SmallFont);
-      lcd.print("0:Sleep 6hr", LEFT, 10);
+      lcd.print("0:Sleep Mode", LEFT, 10);
       lcd.print("1:Temperture", LEFT, 20);
       lcd.print("2:Humdity", LEFT, 30);
       lcd.print("3:Pressure", LEFT, 40);
@@ -581,7 +580,12 @@ void sleepmode()
                   lcd.disableSleep();
                   return;
                 } 
-          }
+            }else
+            {//clock not running go back display message
+              lcd.disableSleep();
+              return;
+            }
+          
     } // loop forever until Alarm set
 }
 
