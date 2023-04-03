@@ -5,12 +5,6 @@ Overview
 * Description : Arduino Clock, Features: RTC with battery (real time clock), Time, Date, Alarm, Temperature, Humidity, Pressure, LCD output, Keypad input, Sleep modes, LED LCD lighting (4X) white with dimmer control.
 * Author: Gavin Lyons
 
-Software Used
-------------------
-Arduino 1.8.5
-
-Eagle 9.0.1
-
 Libraries Used
 ------------------------
 
@@ -81,7 +75,3 @@ Keypad function
 * Asterisk, Alarm Stop
 * Hash, LCD screen reset ( In event of LCD problem)
 
-Copyright
--------------------------------
-
-Copyright (C) 2016 G Lyons This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, see license.md for more details
